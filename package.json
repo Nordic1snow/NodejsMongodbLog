@@ -13,5 +13,8 @@
   ],
   "author": "Nordic1snow",
   "license": "ISC",
-  "git repository":"https://github.com/Nordic1snow/NodejsMongodbLog"
+  "git repository": "https://github.com/Nordic1snow/NodejsMongodbLog",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
