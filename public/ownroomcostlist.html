@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +9,28 @@
 <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 </head>
 <body>
-	<div class="container">
-		<!-- 导航条 -->
-	<%@ include file="nav2.jsp"%>
 	<!-- 导航栏 -->
-	<%@ include file="nav3.jsp"%>
+	<nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color:#F8F8FF;opacity:0.8;">
+		<div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 1px">
+			<ul class="nav nav-tabs">
+				<li class="nav-item">
+					<a href="main2.html" class="nav-link">首页</a>
+				</li>
+					<a href="uppwd.html" class="nav-link">修改密码</a>
+				</li>
+				<li class="nav-item">
+					<a href="ownviolation.html" class="nav-link">个人违规情况列表</a>
+				</li>
+				<li class="nav-item">
+					<a href="ownroomcostlist.html" class="nav-link">所在寝室水电余额</a>
+				</li>
+				<li class="nav-item">
+					<a href="index.html" class="nav-link">退出登陆</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">当前寝室水电情况</div>

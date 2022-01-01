@@ -41,15 +41,6 @@ app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: false })) // for parsing application/x-ww
 app.use('/',express.static('public'))
 
-// if(req.url==='/favicon.ico'){
-//     res.setHeader('Content-Type','image/jpg');
-//     fs.readFile('./public/photo/drom.jpg', function (err, data) {
-//         if (err) return console.error(err);
-//         // console.log(data.toString());
-//         res.write(data);
-//         res.end();
-//     });
-// }
 //注册
 app.get('/RegAction', function (req, res,next) {
     member = req.query.member;
@@ -164,33 +155,49 @@ app.get('/RoomCoast', function (req, res,next) {
     });
     res.redirect('roomcost.html')
   })
-// app.get("/input",(req,res)=>{
-//     // res.send(req.query)
-//     console.log(req.query)
-//     const kitty = new mydata({ name: req.query.first,health:req.query.second });
-//     kitty.save()
-//     ejs.renderFile("login.html",{returnVal:"sucess"},(err,str)=>{
-//         res.send(str)
-//     })
+
+// t_violation.find().then((infos) => {
+// // 模板渲染
+// app.set('views', 'mys');
+// app.set('view engine', 'ejs');
+// app.get('/ownviolation', (req, res, next) => {
+//     res.render('movie', {
+//         message: infos
+//     });
+// });
 // })
-
-// app.post('/RegAction', function (req, res,next) {
-//     // res.send(req.query)
-//     member = req.body.member;
-//     password = req.body.password;
-//     sex = req.body.password;
-//     birth = req.body.birth;
-//     major = req.body.major;
-//     roomNo = req.body.roomNo;
-//     position = req.body.position;
-//     phone = req.body.phone;
-//     photo = req.body.photo;
-
-//     console.log(member,password,sex,birth,major,roomNo,position,phone,photo)
-    
-//     res.redirect('login.html')
-//     // oper=req.body.submit1;
-//     next();
-//   })
+app.get('/ownviolation', function (req, res,next) {
+    member = req.query.member;
+    t_member.findOne({member: member}, function (err, content) {console.log(content)
+        var roomNo = content.roomNo;
+        var phone = content.phone;
+        console.log(roomNo)
+        console.log(phone)
+    t_violation.findOne({member: member}, function (err, data) {console.log(data)
+        var violation = data.violation;
+        var violation_time = data.violation_time;
+        console.log(violation)
+                console.log(violation_time)
+    const server = http.createServer((req,res)=>{
+        // console.log(req);
+        const suburl=req.url.split('?')[0]
+        const queryurl=req.url.split('?')[1]
+        console.log(suburl)
+        console.log(queryurl)
+        // console.log(typeof(suburl))
+        // console.log(firstData.split('=')[1])
+        res.statusCode = 200;    
+        if(queryurl==='member'){
+            ejs.renderFile('ownviolation.html', {member:member,roomNo:roomNo,violation:violation,
+                violation_time:violation_time,phone:phone}, function(err, str){
+                // str => 输出渲染后的 HTML 字符串
+                
+                
+            })
+        }else{console.log("chucuol!")}
+    })
+        });
+    });
+})
 
 app.listen(10407)

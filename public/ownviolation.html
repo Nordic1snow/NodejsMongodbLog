@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>违规信息</title>
+<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+<script src="bootstrap-4.4.1-dist/jquery-3.0.0.min.js"></script>
+<script src="bootstrap-4.4.1-dist/popper.min.js"></script>
+<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+</head>
+<body>
+	<!-- 导航栏 -->
+	<nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color:#F8F8FF;opacity:0.8;">
+		<div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 1px">
+			<ul class="nav nav-tabs">
+				<li class="nav-item">
+					<a href="main2.html" class="nav-link">首页</a>
+				</li>
+					<a href="uppwd.html" class="nav-link">修改密码</a>
+				</li>
+				<li class="nav-item">
+					<a href="ownviolation.html" class="nav-link">个人违规情况列表</a>
+				</li>
+				<li class="nav-item">
+					<a href="ownroomcostlist.html" class="nav-link">所在寝室水电余额</a>
+				</li>
+				<li class="nav-item">
+					<a href="index.html" class="nav-link">退出登陆</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+			<div class="col-lg-12">
+
+				<form method="get" action="/ownviolation"enctype="multipart/form-data">
+
+				<div class="form-group row">
+					<label for="inputEmail3" class="col-sm-3 col-form-label">姓名</label>
+					<div class="col-sm-3">
+						<input type="text" name="member" class="form-control"
+							id="inputEmail3" placeholder="请输入姓名" required>
+					</div>
+					<div class="col-sm-3">
+						<button type="submit" class="btn btn-primary">获取</button>
+					</div>
+				</div>
+
+				
+
+			</form>
+				<div class="card">
+					<div class="card-header">违规情况</div>
+					<div class="card-body">
+						
+						<table class="table">
+							<thead class="thead-dark">
+							<tr>
+								<th scope ="col">姓名</th>
+								<th scope ="col">寝室号</th>							
+								<th scope ="col">违纪事件</th>
+								<th scope ="col">违纪时间</th>
+								<th scope ="col">联系方式</th>
+							</tr>
+							</thead>
+							<tbody>
+								<% message.forEach((v)=>{ %>
+								<tr>
+									<td><%=v.member%></td>
+									<td><%=v.roomNo%></td>
+									<td><%=v.violation%></td>
+									<td><%=v.violation_time%></td>
+									<!-- <td><%v.phone%></td> -->
+								</tr>
+							</tbody>
+						</table>
+							</div>
+						</div>
+					</div>
+				</div>
+</body>
+</html>
