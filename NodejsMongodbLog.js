@@ -21,7 +21,7 @@ app.get("/input",(req,res)=>{
     console.log(req.query)
     const kitty = new mydata({ name: req.query.first,health:req.query.second });
     kitty.save()
-    ejs.renderFile("index.html",{returnVal:"sucess"},(err,str)=>{
+    ejs.renderFile("login.html",{returnVal:"sucess"},(err,str)=>{
         res.send(str)
     })
 })

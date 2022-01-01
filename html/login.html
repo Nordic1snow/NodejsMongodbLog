@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>登录</title>
+<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+<script src="bootstrap-4.4.1-dist/jquery-3.0.0.min.js"></script>
+<script src="bootstrap-4.4.1-dist/popper.min.js"></script>
+<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+</head>
+<body style="background: url(../photo/loginback.jpg) no-repeat;background-size:100% 100%;background-attachment:fixed">
+
+
+		<!-- 导航条 -->
+		<!--#include file = "nav_index.html"-->
+		<!-- 内容  -->
+		<div class="row" style="margin-top: 10px">
+			<div class="col-lg-3"></div>	
+			<div class="col-lg-6" style="height:400px;wight:400px" >
+				<div class="card" style="background-color: #e3f2fd; opacity: 0.8;">
+					<div class="card-header" style="background-color: #87CEFA;opacity:0.8;">用户登录</div>
+					<div class="card-body">
+						
+						<p style="color:red">${info}</p>
+
+						<form method="post" action="LoginAction">
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-3 col-form-label">姓名</label>
+								<div class="col-sm-5">
+									<input type="text" name="member" class="form-control" id="inputEmail3"
+										placeholder="姓名">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-3 col-form-label">Password</label>
+								<div class="col-sm-5">
+									<input type="password" name="password" class="form-control" id="inputPassword3"
+										placeholder="密码">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class = "col-sm-3 col-form-label">验证码</label>
+								<div class="col-sm-3">
+									<input type="text" name="code" class="form-control"
+										id="inputPassword5" placeholder="验证码">
+								</div>
+								<img src="VerCode" onclick="this.src='VerCode?'+Math.random()">
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-10">
+									<button type="submit" class="btn btn-primary">登录</button>
+								</div>
+							</div>
+							
+						</form>
+
+
+
+					</div>
+				</div>
+
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+</body>
+</html>

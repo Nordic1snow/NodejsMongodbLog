@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册</title>
+		<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+		<script src="bootstrap-4.4.1-dist/jquery-3.0.0.min.js"></script>
+		<script src="bootstrap-4.4.1-dist/popper.min.js"></script>
+		<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+	</head>
+	<body style="background: url(../photo/loginback.jpg) no-repeat;background-size:100% 100%;background-attachment:fixed">
+		<!-- 导航条 -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-#e3f2fd"style="background-color: #e3f2fd;opacity:0.8; z-index:19999" >
+			<a class="navbar-brand" href="#">${title}</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<img src="photo/logo1.png" >
+					<li class="nav-item active"><a class="nav-link" href="#">欢迎来到最优寝~
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item active"><a class="nav-link" href="#">Welcome to Optimal Dormitory~
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<img src="photo/login.png">
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href=" " id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> 未登录 </a>
+						<!-- test里的内容为真则显示本体内容 -->
+						<c:if test="${username ==null}">
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href=login.jsp>登录</a> 
+								<a class="dropdown-item" href="reg.jsp">注册</a> 
+							</div>
+						</c:if>
+							</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- 内容  -->
+		<div class="container text-primary" style="margin-top: 50px;">
+		<div class="col-lg-3"></div>
+			<div class="col-lg-6">
+				<div class="card" style="background-color: #e3f2fd;opacity:0.8;">
+					<div class="card-header" style="background-color: #87CEFA;opacity:0.8;">用户注册</div>
+					<div class="card-body">
+
+						<p style="color: red">${info}</p>
+
+						<form method="post" action="RegAction"
+							enctype="multipart/form-data">
+
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-3 col-form-label">姓名</label>
+								<div class="col-sm-6">
+									<input type="text" name="username" class="form-control"
+										id="inputEmail3" placeholder="姓名" required>
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-3 col-form-label">Password</label>
+								<div class="col-sm-6">
+									<input type="password" name="password" class="form-control"
+										id="inputPassword3" placeholder="密码">
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-3 col-form-label">性别</label>
+								<div class="col-sm-3">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="sex"
+											id="sex1" value="男"> <label class="form-check-label"
+											for="sex1">男</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="sex"
+											id="sex2" value="女"> <label class="form-check-label"
+											for="sex2">女</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-3 col-form-label">出生年月</label>
+								<div class="col-sm-5">
+									<input type="date" name="birth" class="form-control"
+										id="inputPassword3" placeholder="生日" value="2001-08-05">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-3 col-form-label">专业</label>
+								<div class="col-sm-3">
+									<select class="form-control" name="major">
+										<option value="电子商务">电子商务</option>
+										<option value="计算机">计算机</option>
+										<option value="软件工程">软件工程</option>
+										<option value="软件工程">信息管理</option>
+									</select>
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-3 col-form-label">寝室号</label>
+								<div class="col-sm-3">
+									<select class="form-control" name="roomNo">
+										<option value="101">101</option>
+										<option value="102">102</option>
+										<option value="103">103</option>
+										<option value="201">201</option>
+										<option value="202">202</option>
+										<option value="203">203</option>
+										<option value="301">301</option>
+										<option value="302">302</option>
+										<option value="303">303</option>
+									</select>
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-3 col-form-label">职位身份</label>
+								<div class="col-sm-3">
+									<select class="form-control" name="position">
+										<option value="管理员">管理员</option>
+										<option value="寝室长">寝室长</option>
+										<option value="普通成员">普通成员</option>
+									</select>
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-3 col-form-label">联系方式</label>
+								<div class="col-sm-6">
+									<input type="text" name="phone" class="form-control"
+										id="inputEmail3" placeholder="联系方式" required>
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label class="col-sm-3 col-form-label">照片上传</label>
+								<div class="form-group row">
+									<input type="file" class="form-control-file" name="photo"
+										id="exampleFormControlFile1">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-10">
+									<button type="submit" class="btn btn-primary">注册</button>
+								</div>
+
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+	</div>
+
+
+</body>
+</html>

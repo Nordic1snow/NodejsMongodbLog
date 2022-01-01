@@ -1,0 +1,55 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>注册成功！</title>
+<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+<script src="bootstrap-4.4.1-dist/jquery-3.0.0.min.js"></script>
+<script src="bootstrap-4.4.1-dist/popper.min.js"></script>
+<script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+</head>
+<body style="background: url(photo/back4.jpg) no-repeat;background-size:100% 100%;background-attachment:fixed">
+
+
+	<div class="container">
+		<!-- 导航条 -->
+	<%@ include file="nav2.jsp"%>
+	<!-- 导航栏 -->
+	<%@ include file="nav3.jsp"%>
+
+		<div class="row" style="margin-top: 10px">
+			<div class="col-lg-12">
+				<div class="card" style="background-color: #e3f2fd;opacity:0.8;">
+					<div class="card-header">用户注册</div>
+					<div class="card-body">
+
+						<div>
+							<h2>用户注册成功，注册信息如下：</h2>
+							<div class="row">
+								<div class="col-lg-4">
+									<p>用户名:${username}</p>
+									<p>密码:${password}</p>
+									<p>性别:${sex}</p>
+									<p>专业:${major}</p>
+									<p>出生日期:${birth}</p>
+									<p>寝室号:${roomNo}</p>
+									<p>职位:${position}</p>
+									<p>联系方式:${phone}</p>
+									<p>注册时间:${reg_time}</p>
+								</div>
+								<div class="col-lg-8">
+									<img src="photo/${myImg}" style="width: 90%">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+		</div>
+</body>
+</html>
