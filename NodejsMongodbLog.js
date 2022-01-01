@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const ejs = require("ejs")
 const bodyparser = require('body-parser')
 app.use(bodyparser.json())
-mongoose.connect('mongodb://172.21.2.236:27017/190110910407');
+// mongoose.connect('mongodb://172.21.2.236:27017/190110910407');
+mongoose.connect('mongodb://localhost/test');
 
 const schema1={
     member:String,
@@ -18,8 +19,21 @@ const schema1={
     statu:Boolean,
     phone:String
 }
-
+const violation_schema={
+    member:String,
+    violation:String,
+    violation_time:Date,
+    roomNo:String,
+    phone:String	 
+}
+const room_schema={
+    roomNo:String,
+	waterFee:Number,
+	elecFee:Number 
+}
 const t_member = mongoose.model('t_member',schema1);
+const t_violation = mongoose.model('t_violation',violation_schema);
+const t_room = mongoose.model('t_room',room_schema);
 // const kitty = new mydata({ name: 'testZildjian' });
 // kitty.save()
 
@@ -27,6 +41,15 @@ app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: false })) // for parsing application/x-ww
 app.use('/',express.static('public'))
 
+// if(req.url==='/favicon.ico'){
+//     res.setHeader('Content-Type','image/jpg');
+//     fs.readFile('./public/photo/drom.jpg', function (err, data) {
+//         if (err) return console.error(err);
+//         // console.log(data.toString());
+//         res.write(data);
+//         res.end();
+//     });
+// }
 //注册
 app.get('/RegAction', function (req, res,next) {
     member = req.query.member;
@@ -89,19 +112,6 @@ app.get('/uppwd', function (req, res,next) {
                 if (pwd === oldPwd) {
                     t_member.updateOne({"member" :member},{"password":newPwd})
                     .then(result =>console.log(result))
-                    // t_member.save({
-                    //     // "_id" : ObjectId("56064f89ade2f21f36b03136"),
-                    //     "member" :member,
-                    //     "password":newPwd
-                        // sex:
-                        // major:
-                        // birth:
-                        // roomNo:
-                        // position:
-                        // photo:
-                        // statu:
-                        // phone:
-                    //})
                     res.redirect('main2.html')
                     
                 } else  {
@@ -113,6 +123,46 @@ app.get('/uppwd', function (req, res,next) {
     }else{
         res.redirect('uppwd.html')
     }
+  })
+//违规事件登记
+app.get('/ViolationAction', function (req, res,next) {
+    username = req.query.username;
+    message = req.query.message;
+    time = req.query.time;
+    t_member.findOne({member: username}, function (err, content) {console.log(content)
+        var roomNo = content.roomNo;
+        var phone = content.phone;
+        const violations = new t_violation({ member:username,violation:message,violation_time:time,
+            roomNo:roomNo,phone:phone});
+            violations.save()
+    });
+    // t_member.find({member:member},(err,data)=>{console.log(data)})
+    res.redirect('violation.html')
+  })
+//水电费缴纳
+app.get('/RoomCoast', function (req, res,next) {
+    roomNo = req.query.roomNo;
+    waterfee = parseFloat(req.query.waterfee);
+    elecfee = parseFloat(req.query.elecfee);
+
+    // console.log(waterfee)
+    // console.log(elecfee)
+    // const roomcosts = new t_room({ roomNo:roomNo,waterFee:waterfee,elecFee:elecfee});
+    // roomcosts.save()
+    t_room.findOne({roomNo: roomNo}, function (err, content) {console.log(content)
+
+        var waterFee_be = content.waterFee;
+        var elecFee_be = content.elecFee;
+        // console.log(waterFee_be)
+        // console.log(elecFee_be)
+        var waterfees = waterFee_be+waterfee
+        var elecfees = elecFee_be+elecfee
+        // console.log(waterfees)
+        // console.log(elecfees)
+        t_room.updateOne({"roomNo" :roomNo},{"waterFee":waterfees,"elecFee":elecfees})
+        .then(result =>console.log(result))
+    });
+    res.redirect('roomcost.html')
   })
 // app.get("/input",(req,res)=>{
 //     // res.send(req.query)
