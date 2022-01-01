@@ -45,13 +45,12 @@ app.get('/RegAction', function (req, res,next) {
         phone:phone,photo:photo,statu:statu});
     members.save()
     // t_member.find({member:member},(err,data)=>{console.log(data)})
-    next();
     res.redirect('login.html')
   })
 //登陆
 app.get('/login', function (req, res,next) {
     member = req.query.member;
-    console.log(member)
+    // console.log(member)
     password = req.query.password;
     // t_member.find({member:member},(err,data)=>{console.log(data)})
     t_member.findOne({member: member}, function (err, content) {
@@ -59,17 +58,62 @@ app.get('/login', function (req, res,next) {
             res.redirect('login.html')
         } else {
             var pwd = content.password;
-            console.log(pwd);
+            var position = content.position;
+            // console.log(position);
             if (pwd === password) {
-                res.redirect('main.html')
-                
+                if(position ==='管理员'){
+                    res.redirect('main.html')
+                }else{
+                    res.redirect('main2.html')
+                }
             } else  {
                 res.redirect('login.html')
             }
         }
     });
   })
+//修改密码
+app.get('/uppwd', function (req, res,next) {
+    member = req.query.member;
+    // console.log(member)
+    oldPwd = req.query.oldPwd;
+    newPwd = req.query.newPwd;
+    renewPwd = req.query.renewPwd;
+    if(renewPwd === newPwd){
+        t_member.findOne({member: member}, function (err, content) {
+            if (err) {
+                res.redirect('uppwd.html')
+            } else {
+                var pwd = content.password;
+                // console.log(position);
+                if (pwd === oldPwd) {
+                    t_member.updateOne({"member" :member},{"password":newPwd})
+                    .then(result =>console.log(result))
+                    // t_member.save({
+                    //     // "_id" : ObjectId("56064f89ade2f21f36b03136"),
+                    //     "member" :member,
+                    //     "password":newPwd
+                        // sex:
+                        // major:
+                        // birth:
+                        // roomNo:
+                        // position:
+                        // photo:
+                        // statu:
+                        // phone:
+                    //})
+                    res.redirect('main2.html')
+                    
+                } else  {
+                    res.redirect('uppwd.html')
+                }
+            }
+        });
 
+    }else{
+        res.redirect('uppwd.html')
+    }
+  })
 // app.get("/input",(req,res)=>{
 //     // res.send(req.query)
 //     console.log(req.query)

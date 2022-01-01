@@ -10,8 +10,8 @@
 	</head>
 	<body style="background: url(../photo/loginback.jpg) no-repeat;background-size:100% 100%;background-attachment:fixed">
 		<!-- 导航条 -->
-		<nav class="navbar navbar-expand-lg navbar-light bg-#e3f2fd"style="background-color: #e3f2fd;opacity:0.8; z-index:19999" >
-
+        <nav class="navbar navbar-expand-lg navbar-light bg-#e3f2fd"style="background-color: #e3f2fd;opacity:0.8; z-index:19999" >
+            
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<img src="photo/logo1.png" >
@@ -25,16 +25,18 @@
 					<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href=" " id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> 未登录 </a>
-						<!-- test里的内容为真则显示本体内容 -->
-						<c:if test="${username ==null}">
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href=login.jsp>登录</a> 
-								<a class="dropdown-item" href="reg.jsp">注册</a> 
-							</div>
-						</c:if>
-							</li>
+						aria-expanded="false">未登录</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href=login.html>登录</a> 
+								<a class="dropdown-item" href="reg.html">注册</a> 
+						</div>
+					</li>
 				</ul>
+				<form class="form-inline my-2 my-lg-0" methon="post" action = "/SelectInfo">
+						<input class="form-control mr-sm-2" type="search" name="search"
+							placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				</form>	
 			</div>
 		</nav>
 		<!-- 内容  -->
