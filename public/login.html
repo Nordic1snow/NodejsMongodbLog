@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,21 +9,17 @@
 <script src="bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 </head>
 <body style="background: url(photo/loginback.jpg) no-repeat;background-size:100% 100%;background-attachment:fixed">
-
-
-		
-
 		<!-- 内容  -->
 		<div class="row" style="margin-top: 10px">
 			<div class="col-lg-3"></div>	
-			<div class="col-lg-6" style="height:400px;wight:400px" >
+			<div class="col-lg-6" style="height:400px;width:400px" >
 				<div class="card" style="background-color: #e3f2fd; opacity: 0.8;">
 					<div class="card-header" style="background-color: #87CEFA;opacity:0.8;">用户登录</div>
 					<div class="card-body">
 						
 						<p style="color:red">${info}</p>
 
-						<form action="/input" method="GET">
+						<form action="/login" method="GET">
 							<div class="form-group row">
 								<label for="inputEmail3" class="col-sm-3 col-form-label">姓名</label>
 								<div class="col-sm-5">
@@ -39,14 +33,6 @@
 									<input type="password" name="password" class="form-control" id="inputPassword3"
 										placeholder="密码">
 								</div>
-							</div>
-							<div class="form-group row">
-								<label class = "col-sm-3 col-form-label">验证码</label>
-								<div class="col-sm-3">
-									<input type="text" name="code" class="form-control"
-										id="inputPassword5" placeholder="验证码">
-								</div>
-								<img src="VerCode" onclick="this.src='VerCode?'+Math.random()">
 							</div>
 
 							<div class="form-group row">
