@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const ejs = require("ejs")
 const bodyparser = require('body-parser')
 app.use(bodyparser.json())
-// mongoose.connect('mongodb://172.21.2.236:27017/190110910407');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://172.21.2.236:27017/190110910407');
+// mongoose.connect('mongodb://localhost/test');
 
 const schema1={
     member:String,
